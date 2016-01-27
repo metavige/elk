@@ -1,0 +1,21 @@
+elasticsearch:
+  image: registry.co/nebula/elasticsearch
+  ports:
+    - 9200:9200
+    - 9300:9300
+
+logstash:
+  image: registry.co/nebula/logstash
+  ports:
+    - 5000:5000
+  links:
+    - elasticsearch
+
+kibana:
+  image: registry.co/nebula/kibana
+  ports:
+    - 5601:5601
+  volumes:
+    - $PWD/kibana/config:/opt/kibana/config
+  links:
+    - elasticsearch
