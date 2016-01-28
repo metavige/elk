@@ -1,6 +1,8 @@
 #!/bin/sh
 
-
 # run elastcsearch
-#
-/elasticsearch/bin/elasticsearch
+gosu logstash logstash &
+gosu kibana kibana &
+redis-server &
+
+gosu elasticsearch elasticsearch
